@@ -29,4 +29,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', 'ReportZoneController@getMyReport');
         Route::post('/posting', 'ReportZoneController@report');
     });
+    Route::prefix('river')->group(function () {
+        Route::get('/{id}', 'RiverHeightController@getRiverHeight');
+        Route::post('/height', 'RiverHeightController@report');
+    });
 });
