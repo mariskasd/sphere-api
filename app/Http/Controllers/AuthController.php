@@ -27,14 +27,15 @@ class AuthController extends Controller
                 Auth::login($user);
 
                 return [
+                    "isError" => false,
                     'user' => $user,
                     'token' => $user->createToken('token-auth')->plainTextToken
                 ];
             } else {
-                return response()->json(["message" => "Invalid email or password"], 400);
+                return response()->json(["isError" => true,"message" => "Invalid email or password"],200);
             }
         } else {
-            return response()->json(["message" => "Invalid email or password"], 400);
+            return response()->json(["isError" => true,"message" => "Invalid email or password"],200);
         }
  
     }
@@ -50,9 +51,9 @@ class AuthController extends Controller
         $save = $user->save();
 
         if($save){
-            return response()->json(["message" => "Sukses Register"] ,200);
+            return response()->json(["isError" => false,"message" => "Sukses Register"] ,200);
         } else {
-            return response()->json(["message" => "Gagal Register"] ,400);
+            return response()->json(["isError" => true,"message" => "Gagal Register"],400);
         }
     }
 
@@ -81,9 +82,9 @@ class AuthController extends Controller
         if(Hash::check($request->password_old,$user->password)){
             $password = Hash::make($request->password);
             $user->update(["password" => $password]);
-            return response()->json(["message" => "Sukses Ubah Kata Sandi"],200);
+            return response()->json(["isError" => false,"message" => "Sukses Ubah Kata Sandi"],200);
         }else{
-            return response()->json(["message" => "Kata Sandi Lama Salah"],400);
+            return response()->json(["isError" => true,"message" => "Kata Sandi Lama Salah"],200);
         }
 
         return $user;
@@ -92,7 +93,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::user()->tokens()->delete();
-        return response()->json(["message" => "Logout Success"],200);
+        return response()->json(["isError" => false,"message" => "Logout Success"],200);
     }
 
 }

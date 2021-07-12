@@ -44,9 +44,9 @@ class ReportZoneController extends Controller
         $save = $report->save();
 
         if($save){
-            return response()->json(["message" => "Sukses Lapor"] ,200);
+            return response()->json(["isError" => false,"message" => "Sukses Lapor"] ,200);
         } else {
-            return response()->json(["message" => "Gagal Lapor"] ,400);
+            return response()->json(["isError" => true,"message" => "Gagal Lapor"] ,400);
         }
     }
 
