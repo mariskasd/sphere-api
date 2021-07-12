@@ -32,10 +32,10 @@ class AuthController extends Controller
                     'token' => $user->createToken('token-auth')->plainTextToken
                 ];
             } else {
-                return response()->json(["isError" => true,"message" => "Invalid email or password"],200);
+                return response()->json(["isError" => true,"message" => "Email atau Kata Sandi salah"],200);
             }
         } else {
-            return response()->json(["isError" => true,"message" => "Invalid email or password"],200);
+            return response()->json(["isError" => true,"message" => "Email atau Kata Sandi salah"],200);
         }
  
     }
@@ -70,7 +70,10 @@ class AuthController extends Controller
 
         $user->update($request->all());
 
-        return $user;
+        return [
+            "isError" => false,
+            'user' => $user
+        ];
     }
 
     public function editPassword(EditPasswordRequest $request)
