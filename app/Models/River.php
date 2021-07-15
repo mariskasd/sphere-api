@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\River;
 
-class RiverHeight extends Authenticatable
+class River extends Authenticatable
 {
     use HasFactory, Notifiable , HasApiTokens;
 
@@ -19,9 +18,7 @@ class RiverHeight extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'river_id',
-        'height',
-        'status'
+        'name'
     ];
 
     /**
@@ -38,9 +35,4 @@ class RiverHeight extends Authenticatable
     protected $casts = [
         // 'email_verified_at' => 'datetime',
     ];
-
-    public function river()
-    {
-        return $this->hasOne(River::class, 'id' , 'river_id');
-    }
 }

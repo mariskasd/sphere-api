@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRiverHeightTable extends Migration
+class CreateRiverTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateRiverHeightTable extends Migration
      */
     public function up()
     {
-        Schema::create('river_heights', function (Blueprint $table) {
+        Schema::create('rivers', function (Blueprint $table) {
             $table->id();
-            $table->integer('river_id');
-            $table->string('height');
-            $table->string('status');
+            $table->string('name');
             $table->timestamps();
-
-            $table->foreign('river_id')->references('id')->on('rivers');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateRiverHeightTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('river_heights');
+        Schema::dropIfExists('rivers');
     }
 }

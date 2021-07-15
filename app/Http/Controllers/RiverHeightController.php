@@ -10,6 +10,7 @@ use Validator;
 use Hash;
 use Session;
 use App\Models\RiverHeight;
+use App\Models\River;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,8 +37,15 @@ class RiverHeightController extends Controller
 
     public function getRiverHeight($id)
     {
-        $report = RiverHeight::query()->where('river_id',$id)->OrderBy('created_at','desc')->first();
+        $report = RiverHeight::query()->where('river_id',$id)->with('river')->OrderBy('created_at','desc')->first();
 
         return $report;
+    }
+
+    public function getListRiver()
+    {
+        $river = River::query()->get();
+
+        return $river;
     }
 }
