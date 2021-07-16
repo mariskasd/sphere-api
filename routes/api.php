@@ -34,4 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/{id}', 'RiverHeightController@getRiverHeight');
         Route::post('/height', 'RiverHeightController@report');
     });
+    Route::prefix('notif')->group(function () {
+        Route::get('/', 'RiverHeightController@getListNotif');
+    });
 });
