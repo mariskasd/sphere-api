@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\River;
+use App\Models\RiverHeight;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,26 +15,68 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        River::query()->insert([
+        $river1 = River::query()->create([
             'name' => 'Sungai Brantas'
         ]);
-        River::query()->insert([
+        $river2 = River::query()->create([
             'name' => 'Sungai Kalisari'
         ]);
-        River::query()->insert([
+        $river3 = River::query()->create([
             'name' => 'Sungai Metro'
         ]);
-        River::query()->insert([
+        $river4 = River::query()->create([
             'name' => 'Kali Amprong'
         ]);
-        River::query()->insert([
+        $river5 = River::query()->create([
             'name' => 'Kali Buring'
         ]);
-        River::query()->insert([
+        $river6 = River::query()->create([
             'name' => 'Kali Watu'
         ]);
-        River::query()->insert([
+        $river7 = River::query()->create([
             'name' => 'Kali Kutuk'
+        ]);
+
+        RiverHeight::query()->create([
+            'river_id' => $river1->id,
+            'height' => '100',
+            'status' => 'Aman'
+        ]);
+
+        RiverHeight::query()->create([
+            'river_id' => $river2->id,
+            'height' => '100',
+            'status' => 'Aman'
+        ]);
+
+        RiverHeight::query()->create([
+            'river_id' => $river3->id,
+            'height' => '100',
+            'status' => 'Aman'
+        ]);
+
+        RiverHeight::query()->create([
+            'river_id' => $river4->id,
+            'height' => '100',
+            'status' => 'Aman'
+        ]);
+
+        RiverHeight::query()->create([
+            'river_id' => $river5->id,
+            'height' => '100',
+            'status' => 'Aman'
+        ]);
+
+        RiverHeight::query()->create([
+            'river_id' => $river6->id,
+            'height' => '100',
+            'status' => 'Aman'
+        ]);
+
+        RiverHeight::query()->create([
+            'river_id' => $river7->id,
+            'height' => '100',
+            'status' => 'Aman'
         ]);
         // \App\Models\User::factory(10)->create();
     }

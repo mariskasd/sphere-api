@@ -18,6 +18,7 @@ class Notification extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'river_id',
         'message',
         'status'
     ];

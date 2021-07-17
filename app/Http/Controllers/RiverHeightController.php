@@ -36,12 +36,13 @@ class RiverHeightController extends Controller
             if (($lastStatus->status != 'Aman' && $request->status == 'Aman') || ($request->status != 'Aman')) {
                 $riverName = River::query()->where('id', $request->river_id)->first();
 
-                $message = 'Ketinggian ' . $riverName->name . ' masuk dalam kategori "' . $request->status . '" !';
+                $message = 'Ketinggian ' . $riverName->name . ' saat ini ' . $request->height . 'cm masuk dalam kategori "' . $request->status . '" !';
 
                 if ($request->status != 'Aman')
-                    $message = 'HATI - HATI , Ketinggian ' . $riverName->name . ' masuk dalam kategori "' . $request->status . '" !';
+                    $message = 'HATI - HATI , Ketinggian ' . $riverName->name . ' saat ini ' . $request->height . 'cm masuk dalam kategori "' . $request->status . '" !';
 
                 $notif = new Notification();
+                $notif->river_id = $request->river_id;
                 $notif->message = $message;
                 $notif->status = $request->status;
 

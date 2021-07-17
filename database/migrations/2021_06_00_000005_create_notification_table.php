@@ -15,9 +15,12 @@ class CreateNotificationTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->integer('river_id');
             $table->string('message');
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('river_id')->references('id')->on('rivers');
         });
     }
 
