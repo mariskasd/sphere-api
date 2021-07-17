@@ -11,7 +11,7 @@ use Hash;
 use Session;
 use App\Models\RiverHeight;
 use App\Models\River;
-use App\Models\Notification;
+use App\Models\Notif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use OneSignal;
@@ -41,7 +41,7 @@ class RiverHeightController extends Controller
                 if ($request->status != 'Aman')
                     $message = 'HATI - HATI , Ketinggian ' . $riverName->name . ' saat ini ' . $request->height . 'cm masuk dalam kategori "' . $request->status . '" !';
 
-                $notif = new Notification();
+                $notif = new Notif();
                 $notif->river_id = $request->river_id;
                 $notif->message = $message;
                 $notif->status = $request->status;
@@ -78,7 +78,7 @@ class RiverHeightController extends Controller
 
     public function getListNotif()
     {
-        $notif = Notification::query()->orderBy('created_at','desc')->get();
+        $notif = Notif::query()->orderBy('created_at','desc')->get();
 
         return $notif;
     }
