@@ -4,7 +4,12 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\River;
+use App\Models\Report_River;
+use App\Models\User;
 use App\Models\RiverHeight;
+use Carbon\Carbon;
+use Hash;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,69 +20,134 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $river1 = River::query()->create([
+        $river[0] = River::query()->create([
             'name' => 'Sungai Brantas'
         ]);
-        $river2 = River::query()->create([
+        $river[1] = River::query()->create([
             'name' => 'Sungai Kalisari'
         ]);
-        $river3 = River::query()->create([
+        $river[2] = River::query()->create([
             'name' => 'Sungai Metro'
         ]);
-        $river4 = River::query()->create([
+        $river[3] = River::query()->create([
             'name' => 'Kali Amprong'
         ]);
-        $river5 = River::query()->create([
+        $river[4] = River::query()->create([
             'name' => 'Kali Buring'
         ]);
-        $river6 = River::query()->create([
+        $river[5] = River::query()->create([
             'name' => 'Kali Watu'
         ]);
-        $river7 = River::query()->create([
+        $river[6] = River::query()->create([
             'name' => 'Kali Kutuk'
         ]);
 
         RiverHeight::query()->create([
-            'river_id' => $river1->id,
+            'river_id' => $river[0]->id,
             'height' => '100',
             'status' => 'Aman'
         ]);
 
         RiverHeight::query()->create([
-            'river_id' => $river2->id,
+            'river_id' => $river[1]->id,
             'height' => '100',
             'status' => 'Aman'
         ]);
 
         RiverHeight::query()->create([
-            'river_id' => $river3->id,
+            'river_id' => $river[2]->id,
             'height' => '100',
             'status' => 'Aman'
         ]);
 
         RiverHeight::query()->create([
-            'river_id' => $river4->id,
+            'river_id' => $river[3]->id,
             'height' => '100',
             'status' => 'Aman'
         ]);
 
         RiverHeight::query()->create([
-            'river_id' => $river5->id,
+            'river_id' => $river[4]->id,
             'height' => '100',
             'status' => 'Aman'
         ]);
 
         RiverHeight::query()->create([
-            'river_id' => $river6->id,
+            'river_id' => $river[5]->id,
             'height' => '100',
             'status' => 'Aman'
         ]);
 
         RiverHeight::query()->create([
-            'river_id' => $river7->id,
+            'river_id' => $river[6]->id,
             'height' => '100',
             'status' => 'Aman'
         ]);
+
+        $patroli[0] = User::query()->create([
+            'name' => 'Andi Putra',
+            'email' => 'andi@sphere.com',
+            'password' =>  Hash::make('123456'),
+            'phone' => '081222333444',
+            'type' => 'patroli'
+        ]);
+
+        $patroli[1] = User::query()->create([
+            'name' => 'Didi Putra',
+            'email' => 'didi@sphere.com',
+            'password' => Hash::make('123456'),
+            'phone' => '081222333444',
+            'type' => 'patroli'
+        ]);
+
+        User::query()->create([
+            'name' => 'Dino Putra',
+            'email' => 'dino@sphere.com',
+            'password' => Hash::make('123456'),
+            'phone' => '081111444555',
+            'type' => 'teknisi'
+        ]);
+
+        User::query()->create([
+            'name' => 'Dimas Putra',
+            'email' => 'dimas@sphere.com',
+            'password' => Hash::make('123456'),
+            'phone' => '081333444555',
+            'type' => 'teknisi'
+        ]);
+
+        User::query()->create([
+            'name' => 'Sinta Putri',
+            'email' => 'sinta@sphere.com',
+            'password' => Hash::make('123456'),
+            'phone' => '081444555666',
+            'type' => 'admin'
+        ]);
+
+        User::query()->create([
+            'name' => 'Dinda Putri',
+            'email' => 'dinda@sphere.com',
+            'password' => Hash::make('123456'),
+            'phone' => '081111444555',
+            'type' => 'user'
+        ]);
+
+        for ($i = 5; $i <= 8; $i++) {
+            $userid = $patroli[0]->id;
+            if($i % 2 == 1){
+                $userid = $patroli[1]->id;
+            }
+            for ($a = 0; $a < 7; $a++) {
+                Report_River::query()->create([
+                    'rivers_id' => $river[$a]->id,
+                    'user_id' => $userid,
+                    'task_date' => Carbon::parse($i.'-1-2022')->format('d-m-Y')
+                ]);
+            }
+        }
+
+
+
         // \App\Models\User::factory(10)->create();
     }
 }

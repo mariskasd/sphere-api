@@ -23,9 +23,12 @@ class CreateReportZoneTable extends Migration
             $table->string('longitude');
             $table->longText('address');
             $table->string('image');
+            $table->integer('assigned_id')->nullable();
+            $table->boolean('solved');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('assigned_id')->references('id')->on('users');
         });
     }
 

@@ -27,12 +27,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
     Route::prefix('report')->group(function () {
         Route::get('/', 'ReportZoneController@getMyReport');
+        Route::get('/all', 'ReportZoneController@getAllReport');
+        Route::get('/unassigned', 'ReportZoneController@getUnassignedReport');
         Route::post('/posting', 'ReportZoneController@report');
+        Route::post('/solved/{id}', 'ReportZoneController@solvedTask');
+        Route::post('/assign/{id}', 'ReportZoneController@assignReport');
+        Route::get('/task', 'ReportZoneController@getMyTask');
+    });
+    Route::prefix('teknisi')->group(function () {
+        Route::get('/', 'ReportZoneController@getTeknisi');
     });
     Route::prefix('river')->group(function () {
         Route::get('/list', 'RiverHeightController@getListRiver');
         Route::get('/{id}', 'RiverHeightController@getRiverHeight');
         Route::post('/height', 'RiverHeightController@report');
+        Route::post('/report/{id}', 'ReportRiverController@report');
+        Route::get('/report/task', 'ReportRiverController@getMyTask');
     });
     Route::prefix('notif')->group(function () {
         Route::get('/', 'RiverHeightController@getListNotif');

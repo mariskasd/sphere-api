@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Report_Solving;
 
 class Report extends Authenticatable
 {
@@ -24,8 +25,15 @@ class Report extends Authenticatable
         'latitude',
         'longitude',
         'address',
-        'image'
+        'image',
+        'assigned_id',
+        'solved'
     ];
+
+    public function solving()
+    {
+        return $this->hasOne(Report_Solving::class, 'reports_id' , 'id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

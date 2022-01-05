@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotifTable extends Migration
+class CreateReportSolvingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateNotifTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifs', function (Blueprint $table) {
+        Schema::create('reports_solving', function (Blueprint $table) {
             $table->id();
-            $table->integer('river_id');
-            $table->string('message');
-            $table->string('status');
+            $table->integer('reports_id');
+            $table->string('photo');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
 
-            $table->foreign('river_id')->references('id')->on('rivers');
+            $table->foreign('reports_id')->references('id')->on('reports');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateNotifTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifs');
+        Schema::dropIfExists('reports_solving');
     }
 }
