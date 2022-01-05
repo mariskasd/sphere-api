@@ -59,7 +59,8 @@
         "sort-packages": true
     },
     "replace": {  
-        "symfony/polyfill-ctype": "*",  
+        "symfony/polyfill-ctype": "*", 
+        "symfony/polyfill-iconv" : "*", 
         "ralouphie/getallheaders": "*",  
         "symfony/polyfill-mbstring": "*"  
     },
