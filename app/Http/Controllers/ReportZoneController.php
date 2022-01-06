@@ -37,19 +37,20 @@ class ReportZoneController extends Controller
         $save = $report->save();
 
         if ($save) {
-            // $userId = User::where('type', 'admin')->first()->id;
+            $userId = [strval(User::where('type', 'admin')->first()->id)];
 
-            // OneSignal::sendNotificationToUser(
-            //     "Laporan Baru",
-            //     $userId,
-            //     $url = null,
-            //     $data = null,
-            //     $buttons = null,
-            //     $schedule = null
-            // );
-            return response()->json(["isError" => false, "message" => "Sukses Lapor"], 200);
+            OneSignal::sendNotificationToExternalUser(
+                "Laporan Baru",
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+            );
+
+            return response()->json(["isError" => false, "message" => "Sukses"], 200);
         } else {
-            return response()->json(["isError" => true, "message" => "Gagal Lapor"], 400);
+            return response()->json(["isError" => true, "message" => "Gagal"], 400);
         }
     }
 
@@ -60,17 +61,21 @@ class ReportZoneController extends Controller
         ]);
 
         if ($save) {
-            // OneSignal::sendNotificationToUser(
-            //     "Tugas Baru untuk anda",
-            //     $request->user_id,
-            //     $url = null,
-            //     $data = null,
-            //     $buttons = null,
-            //     $schedule = null
-            // );
-            return response()->json(["isError" => false, "message" => "Sukses Assign"], 200);
+
+            $userId = [strval($request->user_id)];
+
+            OneSignal::sendNotificationToExternalUser(
+                "Tugas Baru",
+                $userId,
+                $url = null,
+                $data = null,
+                $buttons = null,
+                $schedule = null
+            );
+
+            return response()->json(["isError" => false, "message" => "Sukses"], 200);
         } else {
-            return response()->json(["isError" => true, "message" => "Gagal Assign"], 400);
+            return response()->json(["isError" => true, "message" => "Gagal"], 400);
         }
     }
 
@@ -84,12 +89,6 @@ class ReportZoneController extends Controller
     public function getMyReport(Request $request)
     {
         $report = Report::query()->where('user_id', Auth::user()->id)->get();
-
-        // $host = request()->getSchemeAndHttpHost();
-
-        // foreach ($report as $reports){
-        //     $reports->image = $host.'/storage' . '/' . $reports->image;
-        // }
 
         return $report;
     }
@@ -131,12 +130,6 @@ class ReportZoneController extends Controller
     public function getMyTask()
     {
         $report = Report::query()->with('solving')->where('assigned_id', Auth::user()->id)->get();
-
-        // $host = request()->getSchemeAndHttpHost();
-
-        // foreach ($report as $reports){
-        //     $reports->image = $host.'/storage' . '/' . $reports->image;
-        // }
 
         return $report;
     }
