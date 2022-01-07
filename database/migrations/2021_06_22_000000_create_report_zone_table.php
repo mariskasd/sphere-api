@@ -27,8 +27,8 @@ class CreateReportZoneTable extends Migration
             $table->boolean('solved');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('assigned_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('assigned_id')->references('id')->on('users');
         });
     }
 

@@ -21,7 +21,7 @@ class CreateReportSolvingTable extends Migration
             $table->string('longitude');
             $table->timestamps();
 
-            $table->foreign('reports_id')->references('id')->on('reports');
+            // $table->foreign('reports_id')->references('id')->on('reports');
         });
     }
 
