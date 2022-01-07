@@ -15,8 +15,8 @@ class CreateReportRiversTable extends Migration
     {
         Schema::create('reports_river', function (Blueprint $table) {
             $table->id();
-            $table->integer('rivers_id');
-            $table->integer('user_id');
+            $table->integer('rivers_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('status')->nullable();
             $table->longText('description')->nullable();
             $table->string('latitude')->nullable();

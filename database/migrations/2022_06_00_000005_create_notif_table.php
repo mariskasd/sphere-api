@@ -15,8 +15,8 @@ class CreateNotifTable extends Migration
     {
         Schema::create('notifs', function (Blueprint $table) {
             $table->id();
-            $table->integer('river_id')->nullable();
-            $table->integer('report_id')->nullable();
+            $table->integer('river_id')->unsigned()->nullable();
+            $table->integer('report_id')->unsigned()->nullable();
             $table->string('message');
             $table->string('status');
             $table->timestamps();

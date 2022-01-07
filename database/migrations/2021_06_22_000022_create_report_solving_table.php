@@ -15,7 +15,7 @@ class CreateReportSolvingTable extends Migration
     {
         Schema::create('reports_solving', function (Blueprint $table) {
             $table->id();
-            $table->integer('reports_id');
+            $table->integer('reports_id')->unsigned();
             $table->string('photo');
             $table->string('latitude');
             $table->string('longitude');

@@ -15,7 +15,7 @@ class CreateReportZoneTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->string('title');
             $table->string('category');
             $table->longText('description');
@@ -23,7 +23,7 @@ class CreateReportZoneTable extends Migration
             $table->string('longitude');
             $table->longText('address');
             $table->string('image');
-            $table->integer('assigned_id')->nullable();
+            $table->integer('assigned_id')->unsigned()->nullable();
             $table->boolean('solved');
             $table->timestamps();
 

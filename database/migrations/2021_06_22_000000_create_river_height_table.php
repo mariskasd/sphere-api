@@ -15,7 +15,7 @@ class CreateRiverHeightTable extends Migration
     {
         Schema::create('river_heights', function (Blueprint $table) {
             $table->id();
-            $table->integer('river_id');
+            $table->integer('river_id')->unsigned();
             $table->string('height');
             $table->string('status');
             $table->timestamps();
