@@ -37,7 +37,7 @@ class Report extends Authenticatable
 
     public function user()
     {
-        return $this->hasOne(User::class, 'assigned_id' , 'id');
+        return $this->hasOne(User::class, 'id' , 'assigned_id');
     }
 
     /**
