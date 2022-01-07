@@ -95,14 +95,14 @@ class ReportZoneController extends Controller
 
     public function getAllReport(Request $request)
     {
-        $report = Report::query()->with('solving')->get();
+        $report = Report::query()->with('solving')->with('user')->get();
 
         return $report;
     }
 
     public function getReportById($id)
     {
-        $report = Report::query()->where('id',$id)->with('solving')->get();
+        $report = Report::query()->where('id',$id)->with('solving')->with('user')->get();
 
         return $report;
     }

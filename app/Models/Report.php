@@ -35,6 +35,11 @@ class Report extends Authenticatable
         return $this->hasOne(Report_Solving::class, 'reports_id' , 'id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'assigned_id' , 'id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
