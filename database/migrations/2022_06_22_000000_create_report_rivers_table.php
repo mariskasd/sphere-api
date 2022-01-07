@@ -25,8 +25,8 @@ class CreateReportRiversTable extends Migration
             $table->date('task_date');
             $table->timestamps();
 
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->foreign('rivers_id')->references('id')->on('rivers');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('rivers_id')->references('id')->on('rivers');
         });
     }
 

@@ -20,7 +20,7 @@ class CreateRiverHeightTable extends Migration
             $table->string('status');
             $table->timestamps();
 
-            // $table->foreign('river_id')->references('id')->on('rivers');
+            $table->foreign('river_id')->references('id')->on('rivers');
         });
     }
 

@@ -21,8 +21,8 @@ class CreateNotifTable extends Migration
             $table->string('status');
             $table->timestamps();
 
-            // $table->foreign('river_id')->references('id')->on('rivers');
-            // $table->foreign('report_id')->references('id')->on('reports');
+            $table->foreign('river_id')->references('id')->on('rivers');
+            $table->foreign('report_id')->references('id')->on('reports');
         });
     }
 
