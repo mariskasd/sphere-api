@@ -100,6 +100,13 @@ class ReportZoneController extends Controller
         return $report;
     }
 
+    public function getReportById($id)
+    {
+        $report = Report::query()->where('id',$id)->with('solving')->get();
+
+        return $report;
+    }
+
     public function getUnassignedReport()
     {
         $report = Report::query()->with('solving')->whereNull('assigned_id')->get();

@@ -29,6 +29,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', 'ReportZoneController@getMyReport');
         Route::get('/all', 'ReportZoneController@getAllReport');
         Route::get('/unassigned', 'ReportZoneController@getUnassignedReport');
+        Route::get('/{id}', 'ReportZoneController@getReportById');
         Route::post('/posting', 'ReportZoneController@report');
         Route::post('/solved/{id}', 'ReportZoneController@solvedTask');
         Route::post('/assign/{id}', 'ReportZoneController@assignReport');
