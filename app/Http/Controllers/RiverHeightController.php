@@ -78,7 +78,7 @@ class RiverHeightController extends Controller
 
     public function getListNotif()
     {
-        $notif = Notif::query()->orderBy('created_at','desc')->get();
+        $notif = Notif::query()->whereNull('user_id')->orWhere('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
 
         return $notif;
     }

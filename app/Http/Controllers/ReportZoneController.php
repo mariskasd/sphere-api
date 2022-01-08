@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EditPasswordRequest;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\ReportRequest;
+use App\Models\Notif;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Hash;
@@ -37,7 +38,8 @@ class ReportZoneController extends Controller
         $save = $report->save();
 
         if ($save) {
-            $userId = [strval(User::where('type', 'admin')->first()->player)];
+            $user = User::where('type', 'admin')->first();
+            $userId = [strval($user->player)];
 
             OneSignal::sendNotificationToUser(
                 "Laporan Baru",
@@ -47,6 +49,13 @@ class ReportZoneController extends Controller
                 $buttons = null,
                 $schedule = null
             );
+
+            Notif::create([
+                'user_id' => $user->id,
+                'report_id' => $report->id,
+                'message' => "Laporan Baru",
+                'status' => "Baru"
+            ]);
 
             return response()->json(["isError" => false, "message" => "Sukses"], 200);
         } else {
@@ -62,7 +71,7 @@ class ReportZoneController extends Controller
 
         if ($save) {
 
-            $player = User::query()->where('id',$request->assigned_id)->first();
+            $player = User::query()->where('id', $request->assigned_id)->first();
 
             $userId = [strval($player)];
 
@@ -74,6 +83,13 @@ class ReportZoneController extends Controller
                 $buttons = null,
                 $schedule = null
             );
+
+            Notif::create([
+                'user_id' => $request->assigned_id,
+                'report_id' => $id,
+                'message' => "Tugas Baru",
+                'status' => "Baru"
+            ]);
 
             return response()->json(["isError" => false, "message" => "Sukses"], 200);
         } else {
@@ -104,7 +120,7 @@ class ReportZoneController extends Controller
 
     public function getReportById($id)
     {
-        $report = Report::query()->where('id',$id)->with('solving')->with('user')->get();
+        $report = Report::query()->where('id', $id)->with('solving')->with('user')->get();
 
         return $report;
     }

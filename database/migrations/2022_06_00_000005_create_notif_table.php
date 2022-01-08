@@ -15,12 +15,14 @@ class CreateNotifTable extends Migration
     {
         Schema::create('notifs', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->integer('river_id')->unsigned()->nullable();
             $table->integer('report_id')->unsigned()->nullable();
             $table->string('message');
             $table->string('status');
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('river_id')->references('id')->on('rivers');
             $table->foreign('report_id')->references('id')->on('reports');
         });
