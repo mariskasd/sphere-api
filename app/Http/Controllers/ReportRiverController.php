@@ -39,7 +39,7 @@ class ReportRiverController extends Controller
     public function getMyTask()
     {
         $now = date('Y-m-d');
-        $report = Report_River::query()->with('river')->where('user_id', Auth::user()->id)->where('task_date',$now)->get();
+        $report = Report_River::query()->with('river')->get();
 
         return $report;
     }
