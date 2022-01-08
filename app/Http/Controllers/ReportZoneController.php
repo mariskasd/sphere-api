@@ -57,7 +57,7 @@ class ReportZoneController extends Controller
                 'status' => "Baru"
             ]);
 
-            return response()->json(["isError" => false, "message" => "Sukses " . $user->id], 200);
+            return response()->json(["isError" => false, "message" => "Sukses " . $report->id], 200);
         } else {
             return response()->json(["isError" => true, "message" => "Gagal"], 400);
         }
