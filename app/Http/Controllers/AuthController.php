@@ -12,6 +12,7 @@ use Validator;
 use Hash;
 use Session;
 use App\Models\User;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class AuthController extends Controller
 {
@@ -25,6 +26,10 @@ class AuthController extends Controller
         if ($user) {
             if (Auth::attempt($request->only('email', 'password'))) {
                 Auth::login($user);
+
+                $user->update([
+                    'player' => $request->player
+                ]);
 
                 return [
                     "isError" => false,

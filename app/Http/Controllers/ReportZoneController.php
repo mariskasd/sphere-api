@@ -37,9 +37,9 @@ class ReportZoneController extends Controller
         $save = $report->save();
 
         if ($save) {
-            $userId = [strval(User::where('type', 'admin')->first()->id)];
+            $userId = [strval(User::where('type', 'admin')->first()->player)];
 
-            OneSignal::sendNotificationToExternalUser(
+            OneSignal::sendNotificationToUser(
                 "Laporan Baru",
                 $userId,
                 $url = null,
