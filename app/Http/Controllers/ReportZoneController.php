@@ -73,7 +73,7 @@ class ReportZoneController extends Controller
 
             $player = User::query()->where('id', $request->assigned_id)->first();
 
-            $userId = [strval($player)];
+            $userId = [strval($player->player)];
 
             OneSignal::sendNotificationToUser(
                 "Tugas Baru",
