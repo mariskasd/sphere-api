@@ -39,16 +39,16 @@ class ReportZoneController extends Controller
         if ($save) {
             $userId = [strval(User::where('type', 'admin')->first()->player)];
 
-            OneSignal::sendNotificationToAll(
-                "Laporan Baru",
-                // $userId,
-                $url = null,
-                $data = null,
-                $buttons = null,
-                $schedule = null
-            );
+            // OneSignal::sendNotificationToAll(
+            //     "Laporan Baru",
+            //     // $userId,
+            //     $url = null,
+            //     $data = null,
+            //     $buttons = null,
+            //     $schedule = null
+            // );
 
-            return response()->json(["isError" => false, "message" => "Sukses"], 200);
+            return response()->json(["isError" => false, "message" => "Sukses " + $userId], 200);
         } else {
             return response()->json(["isError" => true, "message" => "Gagal"], 400);
         }
