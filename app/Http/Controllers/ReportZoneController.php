@@ -48,7 +48,7 @@ class ReportZoneController extends Controller
             //     $schedule = null
             // );
 
-            return response()->json(["isError" => false, "message" => "Sukses " + $userId[0]], 200);
+            return response()->json(["isError" => false, "message" => "Sukses " . $userId[0]], 200);
         } else {
             return response()->json(["isError" => true, "message" => "Gagal"], 400);
         }
