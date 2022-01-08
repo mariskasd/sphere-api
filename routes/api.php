@@ -29,11 +29,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', 'ReportZoneController@getMyReport');
         Route::get('/all', 'ReportZoneController@getAllReport');
         Route::get('/unassigned', 'ReportZoneController@getUnassignedReport');
+        Route::get('/task', 'ReportZoneController@getMyTask');
         Route::get('/{id}', 'ReportZoneController@getReportById');
         Route::post('/posting', 'ReportZoneController@report');
         Route::post('/solved/{id}', 'ReportZoneController@solvedTask');
         Route::post('/assign/{id}', 'ReportZoneController@assignReport');
-        Route::get('/task', 'ReportZoneController@getMyTask');
+        
     });
     Route::prefix('teknisi')->group(function () {
         Route::get('/', 'ReportZoneController@getTeknisi');
