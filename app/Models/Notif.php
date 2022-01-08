@@ -20,6 +20,7 @@ class Notif extends Authenticatable
     protected $fillable = [
         'river_id',
         'report_id',
+        'user_id',
         'message',
         'status'
     ];
