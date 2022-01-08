@@ -154,7 +154,7 @@ class ReportZoneController extends Controller
 
     public function getMyTask()
     {
-        $report = Report::query()->with('solving')->where('assigned_id', Auth::user()->id)->get();
+        $report = Report::query()->with('solving')->with('user')->where('assigned_id', Auth::user()->id)->get();
 
         return $report;
     }
