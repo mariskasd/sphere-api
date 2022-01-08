@@ -43,7 +43,7 @@ class ReportZoneController extends Controller
                 "Laporan Baru",
                 $userId,
                 $url = null,
-                $data = null,
+                $data = ["id" => $report->id],
                 $buttons = null,
                 $schedule = null
             );
@@ -62,13 +62,15 @@ class ReportZoneController extends Controller
 
         if ($save) {
 
-            $userId = [strval($request->user_id)];
+            $player = User::query()->where('id',$request->assigned_id)->first();
 
-            OneSignal::sendNotificationToExternalUser(
+            $userId = [strval($player)];
+
+            OneSignal::sendNotificationToUser(
                 "Tugas Baru",
                 $userId,
                 $url = null,
-                $data = null,
+                $data = ["id" => $id],
                 $buttons = null,
                 $schedule = null
             );
