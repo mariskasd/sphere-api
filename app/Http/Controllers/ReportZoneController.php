@@ -39,6 +39,7 @@ class ReportZoneController extends Controller
 
         if ($save) {
             $user = User::where('type', 'admin')->first();
+            return $user;
             $userId = [strval($user->player)];
 
             OneSignal::sendNotificationToUser(
@@ -57,7 +58,7 @@ class ReportZoneController extends Controller
                 'status' => "Baru"
             ]);
 
-            return response()->json(["isError" => false, "message" => "Sukses"], 200);
+            return response()->json(["isError" => false, "message" => "Sukses " . $user->id], 200);
         } else {
             return response()->json(["isError" => true, "message" => "Gagal"], 400);
         }
