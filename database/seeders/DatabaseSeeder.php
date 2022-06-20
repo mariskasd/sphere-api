@@ -132,7 +132,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'user'
         ]);
 
-        for ($i = 20; $i <= 30; $i++) {
+        for ($i = 5; $i <= 8; $i++) {
             $userid = $patroli[0]->id;
             if($i % 2 == 1){
                 $userid = $patroli[1]->id;
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
                 Report_River::query()->create([
                     'rivers_id' => $river[$a]->id,
                     'user_id' => $userid,
-                    'task_date' => Carbon::parse('6-' . $i .'-2022')->format('d-m-Y')
+                    'task_date' => Carbon::parse('1-' . $i .'-2022')->format('d-m-Y')
                 ]);
             }
         }
