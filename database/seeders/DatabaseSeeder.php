@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
         Report_River::query()->create([
             'rivers_id' => 1,
             'user_id' => 1,
-            'task_date' => Carbon::parse('20-6-2022')->format('d-m-Y')
+            'task_date' => Carbon::parse('20-6-2022')->format('m-d-Y')
         ]);
 
         // for ($i = 20; $i <= 30; $i++) {
