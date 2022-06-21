@@ -132,25 +132,26 @@ class DatabaseSeeder extends Seeder
             'type' => 'user'
         ]);
 
-        Report_River::query()->create([
-            'rivers_id' => 1,
-            'user_id' => 1,
-            'task_date' => Carbon::parse('20-6-2022')->format('m-d-Y')
-        ]);
+        // Report_River::query()->create([
+        //     'rivers_id' => 1,
+        //     'user_id' => 1,
+        //     'task_date' => Carbon::parse('20-6-2022')->format('m-d-Y')
+        // ]);
 
-        // for ($i = 20; $i <= 30; $i++) {
-        //     $userid = $patroli[0]->id;
-        //     if($i % 2 == 1){
-        //         $userid = $patroli[1]->id;
-        //     }
-        //     for ($a = 0; $a < 7; $a++) {
-        //         Report_River::query()->create([
-        //             'rivers_id' => $river[$a]->id,
-        //             'user_id' => $userid,
-        //             'task_date' => Carbon::parse('6-' . $i .'-2022')->format('d-m-Y')
-        //         ]);
-        //     }
-        // }
+        for ($i = 20; $i <= 30; $i++) {
+            $userid = $patroli[0]->id;
+            if($i % 2 == 1){
+                $userid = $patroli[1]->id;
+            }
+            for ($a = 0; $a < 7; $a++) {
+                Report_River::query()->create([
+                    'rivers_id' => $river[$a]->id,
+                    'user_id' => $userid,
+                    'task_date' => Carbon::createFromFormat('d-m-Y','6-'.$i.'-2022' )
+                    // 'task_date' => Carbon::parse('6-'.$i.'-2022')->format('d-m-Y')
+                ]);
+            }
+        }
 
 
 
