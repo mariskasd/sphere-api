@@ -12,6 +12,7 @@ use Session;
 use App\Models\RiverHeight;
 use App\Models\River;
 use App\Models\Notif;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use OneSignal;
@@ -41,13 +42,6 @@ class RiverHeightController extends Controller
                 if ($request->status != 'Aman')
                     $message = 'HATI - HATI , Ketinggian ' . $riverName->name . ' saat ini ' . $request->height . 'cm masuk dalam kategori "' . $request->status . '" !';
 
-                $notif = new Notif();
-                $notif->river_id = $request->river_id;
-                $notif->message = $message;
-                $notif->status = $request->status;
-
-                $notif->save();
-
                 OneSignal::sendNotificationToAll(
                     $message,
                     $url = null,
@@ -55,6 +49,16 @@ class RiverHeightController extends Controller
                     $buttons = null,
                     $schedule = null
                 );
+
+                $user = User::query()->get();
+                foreach ($user as $users) {
+                    Notif::create([
+                        'user_id' => $users->id,
+                        'river_id' => $request->river_id,
+                        'message' => $message,
+                        'status' => $request->status
+                    ]);
+                }
             }
             return response()->json(["isError" => false, "message" => "Sukses Lapor"], 200);
         } else {
@@ -78,7 +82,7 @@ class RiverHeightController extends Controller
 
     public function getListNotif()
     {
-        $notif = Notif::query()->whereNull('user_id')->orWhere('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+        $notif = Notif::query()->where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
 
         return $notif;
     }
