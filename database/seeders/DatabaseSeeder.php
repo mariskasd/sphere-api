@@ -148,7 +148,7 @@ class DatabaseSeeder extends Seeder
                     'rivers_id' => $river[$a]->id,
                     'user_id' => $userid,
                     // 'task_date' => Carbon::parse('6-20-2022')->format('m-d-Y')
-                    'task_date' => Carbon::createFromFormat('d-m-Y',$i.'-6-2022' )
+                    'task_date' => Carbon::createFromFormat('d-m-Y',$i.'-7-2022' )
                     // 'task_date' => Carbon::parse('6-'.$i.'-2022')->format('d-m-Y')
                 ]);
             }
